@@ -996,6 +996,29 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- mod to do wormholes legendaries first for bonus ones
 
 
@@ -1020,6 +1043,8 @@ end
 --   scar + 2
 --   gravRift/nova - 2 if center otherwise -1
 
+function runDraft()
+
 function assignScore() -- assign a score to each tile based on the following:
     -- res/inf = i/r
     -- tech skip + .5 per planet -- round down if .5
@@ -1030,7 +1055,7 @@ function assignScore() -- assign a score to each tile based on the following:
     for _, system in pairs(_systemHelper.systems()) do
         local score = 0
         for _, planet in ipairs(system.planets or {}) do
-            local planetName = string.lower(planet.name or '') -- make lower
+            local planetName = string.lower(planet.name or '')
             local resources = tonumber(planet.resources) or 0
             local influence = tonumber(planet.influence) or 0
             score = score + math.max(resources, influence)
@@ -1069,6 +1094,7 @@ end
 
 function buildSlices(numSlices, ecoOption)
 -- settings on back ?!?
+
     if ecoOption == "rich" then
         local scoreRange = { 6, 14 }
     elseif ecoOption == "poor" then
@@ -1080,9 +1106,9 @@ function buildSlices(numSlices, ecoOption)
     
 
     for i = 1, numSlices do --for each Slice
-        local remainScore = math.random(scoreRange[1], scoreRange[2]) -- from 4-10 
+        local targetScore = math.random(scoreRange[1], scoreRange[2]) -- from 4-10 
         -- get desired slice value to reach if possible if not round down
-        getTiles(remainScore)
+        newSlice = getTiles(targetSliceScore)
     end
 
 
@@ -1096,15 +1122,15 @@ function buildSeats()
 
 end
 
-function getTiles(remainScore)
+function getTiles(targetSliceScore)
     local targetScore = 0
+    -- do middle first
     for i=1, 3 do -- for each tile in slice/seat
         -- calc from remaining score each tiles value
-        
-
+        tileValue = math.random(-2, 8)
+        if i == 1 then
+            if -- if tile is gravRift/Nebula/Nova subtract points
         findTile(score) -- pick middle tile -- extra math?
-        findTile(score) -- pick left tile
-        findTile(score) -- pick right tile
     end
 end
 
