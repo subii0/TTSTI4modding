@@ -1048,7 +1048,7 @@ sliding window? adjust to make all three tiles work cohesively
 
 function runDraft()
 
-function assignScore() -- assign a score to each tile based on the following:
+function assignScore() -- assign a score to each tile based on the following: -- might be slop
     -- res/inf = i/r
     -- tech skip + .5 per planet -- round down if .5
     -- entropic scar + 2
