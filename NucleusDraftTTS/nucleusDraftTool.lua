@@ -1136,6 +1136,23 @@ function getTiles(targetSliceScore)
                 maxTileValue = targetSliceScore
             end
             tileValue = math.random(-2, maxTileValue)
+
+local tileId = scores[i][1]
+local system = _systemHelper.systemFromTile(tileId)
+
+if system and system.anomalies and (
+    table.concat(system.anomalies, ' '):find('nebula', 1, true)
+    or table.concat(system.anomalies, ' '):find('gravity rift', 1, true)
+) then
+    -- this tile is a Nebula or Gravity Rift
+end
+    -- system has a Nebula or Gravity Rift
+end
+    --['8bc917'] = { tile = 68, source = 'PoK', anomalies = { 'nebula' }, planets = {
+        --{ name = 'Everra', resources = 3, influence = 1, trait = 'cultural', position = { x = 0.45, z = -0.25 } },
+    --}},
+
+
             if tile.isBadNebula or tile.isBadRift then -- FIX -- if tile is gravRift/Nebula/Nova subtract points
                 targetSliceScore = targetSliceScore - 1
             end
