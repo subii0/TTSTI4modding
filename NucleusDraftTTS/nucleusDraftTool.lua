@@ -1003,7 +1003,10 @@ end
 
 
 
+-- fix maxTileValue to be a global var so i dont hard core the maxTileValue myself
+ -- adjust maxToleValue as list decrements and also minTileValue as list decrements
 
+sliding window? adjust to make all three tiles work cohesively
 
 
 
@@ -1127,9 +1130,22 @@ function getTiles(targetSliceScore)
     -- do middle first
     for i=1, 3 do -- for each tile in slice/seat
         -- calc from remaining score each tiles value
-        tileValue = math.random(-2, 8)
+        
         if i == 1 then
-            if -- if tile is gravRift/Nebula/Nova subtract points
+            if maxTileValue>targetSliceScore then
+                maxTileValue = targetSliceScore
+            end
+            tileValue = math.random(-2, maxTileValue)
+            if tile.isBadNebula or tile.isBadRift then -- FIX -- if tile is gravRift/Nebula/Nova subtract points
+                targetSliceScore = targetSliceScore - 1
+            end
+            if tile.isBadNova then
+                targetSliceScore = targetSliceScore - 2
+            end
+        end
+        elseif i==2 or i==3 then
+            randomNumber -2 to maxValue
+        end
         findTile(score) -- pick middle tile -- extra math?
     end
 end
